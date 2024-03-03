@@ -1,4 +1,3 @@
-# TODO здесь писать код
 def main():
     number = int(input('Введите натуральное число n > 1: '))
     if number <= 1:

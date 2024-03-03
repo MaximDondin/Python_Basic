@@ -1,4 +1,3 @@
-# TODO здесь писать код
 def main():
     number = int(input('Введите целое положительное число N: '))
     if number < 0:
