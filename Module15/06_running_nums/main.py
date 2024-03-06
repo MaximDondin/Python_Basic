@@ -11,7 +11,7 @@ for _ in range(size):
 
 for index in range(size):
     if step > size:
-        step -= size
+        step -= size * (step // size)
     new_list.append(start_list[index - step])
 
 print('Изначальный список:\t', start_list)
