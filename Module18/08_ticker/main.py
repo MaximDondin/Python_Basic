@@ -8,6 +8,7 @@ elif len(second_str) > len(first_str):
     print('Вторая строка не может быть больше первой!')
 else:
     for _ in range(len(second_str)):
+        # https://docs.astral.sh/ruff/rules/not-in-test/
         if not second_str in first_str:
             second_str = second_str[-1:] + second_str[:len(second_str) - 1]
             count += 1
