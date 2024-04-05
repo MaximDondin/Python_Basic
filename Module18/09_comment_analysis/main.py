@@ -7,3 +7,4 @@ uppercase, lowercase = count_uppercase_lowercase(text)
 print("Количество заглавных букв:", uppercase)
 print("Количество строчных букв:", lowercase)
 
+    # TODO: и здесь работаем в рамках пройденного материала, пожалуйста
