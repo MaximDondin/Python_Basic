@@ -1,5 +1,3 @@
-text = input('Введите строку: ').split()
+text = input('Введите строку: ')
 
-print('\nРезультат:', end = ' ')
-for word in text:
-    print(word.title(), end = ' ')
+print('\nРезультат:', text.title())
