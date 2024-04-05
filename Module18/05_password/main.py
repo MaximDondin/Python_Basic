@@ -3,7 +3,7 @@ while True:
     if (not password.islower()
             and sum(i_letter.isnumeric() for i_letter in password) >= 3
             and len(password) >= 8):
-        print('Это надёжный пароль!')
+        print('\nЭто надёжный пароль!')
         break
     else:
-        print('Пароль ненадёжный. Попробуйте ещё раз.')
+        print('\nПароль ненадёжный. Попробуйте ещё раз.')
