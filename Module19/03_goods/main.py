@@ -24,4 +24,13 @@ store = {
     ],
 }
 
-# TODO здесь писать код
+for name in goods:
+    total_price = 0
+    total_quantity = 0
+    for j_len in range(len(store[goods[name]])):
+        quantity = 0
+        price = 0
+        quantity, price = store[goods[i]][j].values()
+        total_quantity += quantity
+        total_price += quantity * price
+    print(f'{i} - {total_quantity} штук, стоимость {total_price} рублей')
