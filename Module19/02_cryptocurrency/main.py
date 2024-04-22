@@ -44,5 +44,26 @@ data = {
     ]
 }
 
+#1
+print('1) Списки ключей и значений словаря.')
+for i_inf in data:
+    print(i_inf, ':', data[i_inf])
 
-# TODO здесь писать код
+#2
+data['ETH']['total_diff'] = 100
+#print('\n2)', data['ETH'])
+
+#3
+data['tokens'][0]['fst_token_info']['name'] = 'doge'
+#print('\n3)', data['tokens'][0]['fst_token_info'])
+
+#4
+count = 0
+for i_token_inf in range(len(data['tokens'])):
+    count += data['tokens'][i_token_inf].pop('total_out')
+data['ETH']['total_out'] = count
+#print('\n4)', data['ETH'], '\n', data['tokens'][0].get('total_out'), '\n', data['tokens'][1].get('total_out'))
+
+#5
+data['tokens'][1]['sec_token_info']['total_price'] = data['tokens'][1]['sec_token_info'].pop('price')
+#print('\n5)', data['tokens'][1]['sec_token_info'])
