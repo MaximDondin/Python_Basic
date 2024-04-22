@@ -19,7 +19,8 @@ synonyms = {}
 numb = int(input('Введите количество пар слов: '))
 for i_numb in range(numb):
     print(f'{sequence_number[i_numb]} пара:', end = ' ')
-    words = input('').lower().replace('-', ' ').split()
+    #words = input('').lower().replace('-', ' ').split()
+    words = input('').split(' - ')
     synonyms[words[0]] = words[1]
 print(synonyms)
 if numb > 0:
