@@ -30,7 +30,7 @@ for name in goods:
     for j_len in range(len(store[goods[name]])):
         quantity = 0
         price = 0
-        quantity, price = store[goods[i]][j].values()
+        quantity, price = store[goods[name]][j_len].values()
         total_quantity += quantity
         total_price += quantity * price
-    print(f'{i} - {total_quantity} штук, стоимость {total_price} рублей')
+    print(f'{name} - {total_quantity} штук, стоимость {total_price} рублей')
