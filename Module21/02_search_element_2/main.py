@@ -13,7 +13,7 @@ site = {
 
 def search(data, key, deep):
 	result = None
-	if deep <= 0:
+	if deep == 0:
 		return result
 
 	if key in data:
@@ -29,7 +29,7 @@ def search(data, key, deep):
 
 my_key = input('Введите искомый ключ: ')
 question_of_deep = input('Хотите ввести максимальную глубину? Y/N: ').lower()
-max_deep = None
+max_deep = -1
 if question_of_deep == 'y':
     max_deep = int(input('Введите максимальную глубину: '))
 

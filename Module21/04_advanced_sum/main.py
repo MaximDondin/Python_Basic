@@ -5,8 +5,6 @@ def my_sum(*args):
             summa += i_numb
         elif isinstance(i_numb, (list, set)):
             summa += sum_list(i_numb)
-        elif isinstance(i_numb, dict):
-            summa += sum_dict(i_numb)
     return summa
 
 def sum_list(data):
@@ -14,23 +12,9 @@ def sum_list(data):
     for j_numb in data:
         if isinstance(j_numb, (list, set)):
             summa += my_sum(j_numb)
-        elif isinstance(j_numb, dict):
-            summa += my_sum(j_numb)
         elif isinstance(j_numb, int):
             summa += j_numb
     return summa
-
-def sum_dict(data):
-    summa = 0
-    for j_numb in data.values():
-        if isinstance(j_numb, list):
-            summa += my_sum(j_numb)
-        elif isinstance(j_numb, dict):
-            summa += my_sum(j_numb)
-        elif isinstance(j_numb, int):
-            summa += j_numb
-    return summa
-
 
 
 #print(my_sum([[1, 2, [{3}]], [1], 3]))
