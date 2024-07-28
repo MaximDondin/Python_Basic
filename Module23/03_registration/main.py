@@ -7,7 +7,7 @@ def my_error(my_str):
             for i_liter in my_str[0]:
                 if not i_liter.isalpha():
                     raise NameError
-            if '@' not in my_str[1] and '.' not in my_str[1]:
+            if '@' not in my_str[1] or '.' not in my_str[1]:
                 raise SyntaxError
             if not int(my_str[2]) in range(10, 100):
                 raise ValueError

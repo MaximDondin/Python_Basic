@@ -8,11 +8,11 @@ def write_numb():
                 summ_numb += my_numb
                 rand_numb = random.randint(1, 13)
                 if rand_numb == 5: # в rand_numb любое число появляется с вероятностью 1/13, я взял 5
-                    raise # не знаю как сделать случайную ошибку, если только брать список с ошибками
+                    raise Exception('Вас постигла неудача!')
                 else:
                     file.write(str(my_numb) + '\n')
             print('Вы успешно выполнили условие для выхода из порочного цикла!')
-    except:
-        print('Вас постигла неудача!')
+    except Exception as error:
+        print(error)
 
 write_numb()
