@@ -1,14 +1,16 @@
 import math
+
+
 def get_sage_sqrt(num):
     try:
-        int(num)
         if num < 0:
-            raise BaseException('Ошибка! Число отрицательное.')
+            raise ValueError('Ошибка! Число отрицательное.')
         return math.sqrt(num)
-    except Exception:
-        return 'Ошибка! {} не является числом'.format(num)
-    except BaseException as error:
-        return error
+    except ValueError as exc:
+        return str(exc)
+    except Exception as exc:
+        return 'Ошибка! {} не является числом'.format(exc)
+
 
 # Тестовые случаи
 numbers = [16, 25, -9, 0, 4.5, "abc"]
