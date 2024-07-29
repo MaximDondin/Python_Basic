@@ -1,6 +1,15 @@
-# TODO здесь писать код
+import math
 
-# Здесь создайте функцию get_sage_sqrt
+
+def get_sage_sqrt(num):
+    try:
+        if num < 0:
+            raise ValueError('Ошибка! Число отрицательное.')
+        return math.sqrt(num)
+    except ValueError as exc:
+        return str(exc)
+    except Exception as exc:
+        return 'Ошибка! {} не является числом'.format(exc)
 
 
 # Тестовые случаи
