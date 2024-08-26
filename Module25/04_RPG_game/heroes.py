@@ -74,7 +74,28 @@ class Healer(Hero):
     # - исцеление - увеличивает здоровье цели на величину равную своей магической силе
     # - выбор действия - получает на вход всех союзников и всех врагов и на основе своей стратегии выполняет ОДНО из действий (атака,
     # исцеление) на выбранную им цель
+    def __init__(self, name):
+        super().__init__(name)
+        self.set_power(self.get_power() * 3)
+    def attack(self, target):
+        target.take_damage(self.get_power() / 2)
+    def take_damage(self, damage):
+        self.set_hp(self.get_hp() - damage * 1.2)
+        super().take_damage(damage)
+    def healing(self, target):
+        print(f'\tЗдороье {target.name} - {round(target.get_hp())} + {round(self.get_power())} = {round(target.get_hp() + self.get_power())}')
+        target.set_hp(target.get_hp() + self.get_power())
 
+    def __str__(self):
+        return f'Name: {self.name} | HP: {round(self.get_hp())}'
+    def make_a_move(self, friends, enemies):
+        print(self.name, end=' ')
+        for friend in friends:
+            if friend.get_hp() < 50:
+                print('Лечу союзника -', friend.name)
+                self.healing(friend)
+        print("Атакую того, кто стоит ближе -", enemies[0].name)
+        self.attack(enemies[0])
 
 class Tank(Hero):
     # Танк:
@@ -88,6 +109,39 @@ class Tank(Hero):
     # - опустить щит - если щит поднят - опускает щит. Это уменьшает показатель брони в 2 раза, но увеличивает показатель силы в 2 раза.
     # - выбор действия - получает на вход всех союзников и всех врагов и на основе своей стратегии выполняет ОДНО из действий (атака,
     # поднять щит/опустить щит) на выбранную им цель
+    def __init__(self, name):
+        super().__init__(name)
+        self.defense = 1
+        self.is_shield_up = False
+    def attack(self, target):
+        target.take_damage(self.get_power() / 2)
+    def take_damage(self, damage):
+        self.set_hp(self.get_hp() - (damage / self.defense))
+        super().take_damage(damage)
+    def shield_up(self):
+        self.is_shield_up = True
+        self.defense *= 2
+        self.set_power(self.get_power() / 2)
+        print(f'\tЩит поднят. Броня - {self.defense}. Урон - {self.get_power()}')
+    def shield_down(self):
+        self.is_shield_up = False
+        self.defense /= 2
+        self.set_power(self.get_power() * 2)
+        print(f'\tЩит опущен. Броня - {self.defense}. Урон - {self.get_power()}')
+
+    def __str__(self):
+        return f'Name: {self.name} | HP: {round(self.get_hp())}'
+    def make_a_move(self, friends, enemies):
+        print(self.name, end=' ')
+        if self.get_hp() < 70 and not self.is_shield_up:
+            print('Поднимаю щит')
+            self.shield_up()
+        elif self.get_hp() > 120 and self.is_shield_up:
+            print('Отпускаю щит')
+            self.shield_down()
+        else:
+            print('Атакую того, кто стоит ближе -', enemies[0].name)
+            self.attack(enemies[0])
 
 
 class Attacker(Hero):
@@ -103,3 +157,27 @@ class Attacker(Hero):
     # - ослабление (power_down) - уменьшает коэффициента усиления урона в 2 раза
     # - выбор действия - получает на вход всех союзников и всех врагов и на основе своей стратегии выполняет ОДНО из действий (атака,
     # усиление, ослабление) на выбранную им цель
+    def __init__(self, name):
+        super().__init__(name)
+        self.power_multiply = 1
+    def attack(self, target):
+        target.take_damage(self.get_power() * self.power_multiply)
+        self.power_down()
+    def take_damage(self, damage):
+        self.set_hp(self.get_hp() - damage * (self.power_multiply / 2))
+        super().take_damage(damage)
+    def power_up(self):
+        self.power_multiply *= 2
+        print('\tКоэффициент усиления -', self.power_multiply)
+    def power_down(self):
+        self.power_multiply /= 2
+    def __str__(self):
+        return f'Name: {self.name} | HP: {round(self.get_hp())}'
+    def make_a_move(self, friends, enemies):
+        print(self.name, end=' ')
+        if self.power_multiply <= 1:
+            print('Получаю усиление')
+            self.power_up()
+        else:
+            print('Атакую того, кто стоит ближе -', enemies[0].name)
+            self.attack(enemies[0])
