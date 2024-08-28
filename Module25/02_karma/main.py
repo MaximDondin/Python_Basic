@@ -2,23 +2,22 @@ import random
 class KillError(Exception):
     def __str__(self):
         return 'Убийство'
-    pass
+
 class DrunkError(Exception):
     def __str__(self):
         return 'Пьянство'
-    pass
+
 class CarCrashError(Exception):
     def __str__(self):
         return 'Автокатастрофа'
-    pass
+
 class GluttonyError(Exception):
     def __str__(self):
         return 'Чревоугодие'
-    pass
+
 class DepressionError(Exception):
     def __str__(self):
         return 'Депрессия'
-    pass
 
 def one_day():
     karma_point = random.randint(1, 7)

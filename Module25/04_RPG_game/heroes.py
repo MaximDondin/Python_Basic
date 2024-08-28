@@ -89,13 +89,16 @@ class Healer(Hero):
     def __str__(self):
         return f'Name: {self.name} | HP: {round(self.get_hp())}'
     def make_a_move(self, friends, enemies):
+        super().make_a_move(friends, enemies)
         print(self.name, end=' ')
         for friend in friends:
             if friend.get_hp() < 50:
                 print('Лечу союзника -', friend.name)
                 self.healing(friend)
-        print("Атакую того, кто стоит ближе -", enemies[0].name)
-        self.attack(enemies[0])
+                break       #лечит только одного союзника за ход
+        else:
+            print("Атакую того, кто стоит ближе -", enemies[0].name)
+            self.attack(enemies[0])
 
 class Tank(Hero):
     # Танк:
@@ -132,6 +135,7 @@ class Tank(Hero):
     def __str__(self):
         return f'Name: {self.name} | HP: {round(self.get_hp())}'
     def make_a_move(self, friends, enemies):
+        super().make_a_move(friends, enemies)
         print(self.name, end=' ')
         if self.get_hp() < 70 and not self.is_shield_up:
             print('Поднимаю щит')
@@ -174,6 +178,7 @@ class Attacker(Hero):
     def __str__(self):
         return f'Name: {self.name} | HP: {round(self.get_hp())}'
     def make_a_move(self, friends, enemies):
+        super().make_a_move(friends, enemies)
         print(self.name, end=' ')
         if self.power_multiply <= 1:
             print('Получаю усиление')
