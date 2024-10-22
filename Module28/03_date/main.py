@@ -1,5 +1,8 @@
-
 class Date:
+    def __init__(self, info: list) -> None:
+        self.info = info
+    def __str__(self) -> str:
+        return f'День:{self.info[0]} \tМесяц:{self.info[1]} \tГод:{self.info[2]}'
     @classmethod
     def is_date_valid(cls, data: str) -> bool:
         result = data.split('-')
@@ -18,9 +21,8 @@ class Date:
             return False
 
     @classmethod
-    def from_string(cls, data: str) -> str:
-        result = data.split('-')
-        return f'День:{result[0]} \tМесяц:{result[1]} \tГод:{result[2]}'
+    def from_string(cls, data: str):
+        return cls(data.split('-'))
 
 
 date = Date.from_string('10-12-2077')
