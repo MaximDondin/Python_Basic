@@ -1,15 +1,14 @@
 class File:
-    def __init__(self, path: str) -> None:
+    def __init__(self, path: str, mode: str) -> None:
         self.path = path
-        self.mode = None
+        self.mode = mode
         self.file = None
     def __enter__(self):
         try:
-            self.mode = input('В каком режиме открыть файл? \n"r" - чтение \n"w" - запись \n"a" - добавление \n')
             self.file = open(self.path, self.mode, encoding='utf-8')
-        except:
+        except FileNotFoundError as error:
             self.mode = 'w'
-            print('Такого файла не существует!')
+            print(f'Такого файла не существует! \n{error}')
             print('Создаю новый!')
             self.file = open(self.path, self.mode, encoding='utf-8')
         return self.file
@@ -25,5 +24,6 @@ class File:
 
 
 my_path = input('Укажите путь к файлу: ')
-with File(my_path) as file:
+my_mode = input('В каком режиме открыть файл? \n"r" - чтение \n"w" - запись \n"a" - добавление \n')
+with File(my_path, my_mode) as file:
     print('\nФайл открыт!')
