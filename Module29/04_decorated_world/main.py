@@ -4,7 +4,6 @@ def decorator_with_args_for_any_decorator(decorator):
     def wrapped_decor(*args, **kwargs):
         @functools.wraps(decorator)
         def wrapped_func(func):
-            print(f'Переданные арги и кварги в декоратор: {args} {kwargs}')
             result = decorator(func, *args, **kwargs)
             return result
         return wrapped_func
@@ -13,6 +12,7 @@ def decorator_with_args_for_any_decorator(decorator):
 def decorated_decorator(func: Callable, *args, **kwargs):
     @functools.wraps(func)
     def wrapped_func(*args, **kwargs):
+        print(f'Переданные арги и кварги в декоратор: {args} {kwargs}')
         result = func(*args, **kwargs)
         return result
     return wrapped_func
@@ -23,4 +23,6 @@ def decorated_function(text: str, num: int) -> None:
     print("Привет", text, num)
 
 
+decorated_function("Юзер", 101)
+print()
 decorated_function("Юзер", 101)
