@@ -8,12 +8,13 @@ def decorator_with_args_for_any_decorator(decorator):
             return result
         return wrapped_func
     return wrapped_decor
+
 @decorator_with_args_for_any_decorator
 def decorated_decorator(func: Callable, *args, **kwargs):
     @functools.wraps(func)
-    def wrapped_func(*args, **kwargs):
+    def wrapped_func(*f_args, **f_kwargs):
         print(f'Переданные арги и кварги в декоратор: {args} {kwargs}')
-        result = func(*args, **kwargs)
+        result = func(*f_args, **f_kwargs)
         return result
     return wrapped_func
 
